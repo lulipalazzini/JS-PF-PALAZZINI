@@ -9,6 +9,8 @@ function login() {
 
     if (usuarioIngresado === null || usuarioIngresado === "") {
       alert("Debe ingresar un nombre de usuario");
+    } else if (contraIngresada === null || contraIngresada === "") {
+      alert("Debe ingresar una contraseña");
     } else if (usuarioIngresado == nombreUsuario && contraIngresada == contra) {
       alert(`Bienvenido a PetShopping, ${nombreUsuario}`);
       break;
