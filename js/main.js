@@ -49,8 +49,8 @@ while (opcionInicio != 6) {
     opcionDos(buscaId);
   } else if (opcionInicio === 3) {
     let busqProducto = prompt(
-      `¿Que producto o categoria esta buscando?`
-    ).toLowerCase;
+      `¿Que categoria esta buscando?\nComederos, paseo o juguetes`
+    ).toLowerCase();
     opcionTres(busqProducto);
   } else if (opcionInicio === 4) {
     let buscaId = Number(
@@ -87,16 +87,13 @@ function opcionDos(buscaId) {
 
 function opcionTres(busqProducto) {
   let prodFiltrado = productosPerro.filter(
-    (producto) =>
-      producto.categoria === busqProducto || producto.producto === busqProducto
+    (producto) => producto.categoria === busqProducto
   );
-  let listaFiltro = prodFiltrado
-    .map(
-      (producto) =>
-        `ID: ${producto.id} - Producto: ${producto.producto} - Categoria: ${producto.categoria}`
-    )
-    .join("\n");
-  alert(listaFiltro);
+  let listaFiltro = prodFiltrado.map(
+    (producto) =>
+      `ID: ${producto.id} - Producto: ${producto.producto} - Categoria: ${producto.categoria}`
+  );
+  alert(listaFiltro.join("\n"));
 }
 
 function opcionCuatro(carritoDeCompras, buscaId) {
