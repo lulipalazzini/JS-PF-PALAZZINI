@@ -1,37 +1,174 @@
-/* PREENTREGA 1
-const nombreUsuario = "Pepito";
-const contra = "1234";
-let contador = 3;
-
-function login() {
-  do {
-    let usuarioIngresado = prompt("Ingrese su nombre de usuario").trim();
-    let contraIngresada = prompt("Ingresa tu contraseña").trim();
-
-    if (usuarioIngresado === null || usuarioIngresado === "") {
-      alert("Debe ingresar un nombre de usuario");
-    } else if (usuarioIngresado == nombreUsuario && contraIngresada == contra) {
-      alert(`Bienvenido a PetShopping, ${nombreUsuario}`);
-      break;
-    } else {
-      alert("Contraseña o nombre de usuario incorrectos");
-      contador--;
-      alert(`Le quedan ${contador} intento/s`);
-    }
-  } while (contador > 0);
-}
-
-login(); */
-
-const productosPerro = [
-  { id: 1, producto: "bowl comida", categoria: "comederos", precio: 2000 },
-  { id: 2, producto: "correa y pretal", categoria: "paseo", precio: 4000 },
-  { id: 3, producto: "correa y collar", categoria: "paseo", precio: 2500 },
-  { id: 4, producto: "peluche", categoria: "juguetes", precio: 1000 },
-  { id: 5, producto: "pelota dura", categoria: "juguetes", precio: 700 },
+/* Array de productos */
+const productosPetShop = [
+  {
+    id: 1,
+    producto: "bowl acero",
+    categoria: "comederos",
+    precio: 2000,
+    animal: "ambos",
+    img: "bowlAcero.jpg",
+  },
+  {
+    id: 2,
+    producto: "bowl plegable",
+    categoria: "comederos",
+    precio: 1500,
+    animal: "perro",
+    img: "bowlPlegable.jpg",
+  },
+  {
+    id: 3,
+    producto: "bowl agua automatico",
+    categoria: "comederos",
+    precio: 10000,
+    animal: "ambos",
+    img: "bowlAguaAuto.jpg",
+  },
+  {
+    id: 4,
+    producto: "pretal con correa",
+    categoria: "paseo",
+    precio: 4000,
+    animal: "perro",
+    img: "pretalCorrea.jpg",
+  },
+  {
+    id: 5,
+    producto: "collar con correa",
+    categoria: "paseo",
+    precio: 2500,
+    animal: "perro",
+    img: "collarCorrea.jpg",
+  },
+  {
+    id: 6,
+    producto: "pretal con correa",
+    categoria: "paseo",
+    precio: 3500,
+    animal: "gato",
+    img: "pretalGato.jpg",
+  },
+  {
+    id: 7,
+    producto: "collar",
+    categoria: "paseo",
+    precio: 1500,
+    animal: "gato",
+    img: "collarGato.jpg",
+  },
+  {
+    id: 8,
+    producto: "peluche",
+    categoria: "juguetes",
+    precio: 1000,
+    animal: "ambos",
+    img: "juguetePeluche.jpg",
+  },
+  {
+    id: 9,
+    producto: "pelota dura",
+    categoria: "juguetes",
+    precio: 700,
+    animal: "ambos",
+    img: "juguetePelota.jpg",
+  },
+  {
+    id: 10,
+    producto: "hueso duro",
+    categoria: "juguetes",
+    precio: 900,
+    animal: "perro",
+    img: "jugueteHueso.jpg",
+  },
+  {
+    id: 11,
+    producto: "pelota con soga",
+    categoria: "juguetes",
+    precio: 1200,
+    animal: "perro",
+    img: "jugueteSoga.jpg",
+  },
+  {
+    id: 12,
+    producto: "cañita con plumas",
+    categoria: "juguetes",
+    precio: 1000,
+    animal: "gato",
+    img: "jugueteCanita.jpg",
+  },
+  {
+    id: 13,
+    producto: "ratoncitos",
+    categoria: "juguetes",
+    precio: 300,
+    animal: "gato",
+    img: "jugueteRaton.jpg",
+  },
+  {
+    id: 14,
+    producto: "rascador",
+    categoria: "juguetes",
+    precio: 1800,
+    animal: "gato",
+    img: "rascador.jpg",
+  },
+  {
+    id: 15,
+    producto: "tunel con colgantes",
+    categoria: "juguetes",
+    precio: 2500,
+    animal: "gato",
+    img: "jugueteTunel.jpg",
+  },
+  {
+    id: 16,
+    producto: "cubre asientos",
+    categoria: "otros",
+    precio: 8000,
+    animal: "perro",
+    img: "cubreAsientos.jpg",
+  },
+  {
+    id: 17,
+    producto: "bandeja sanitaria y palita",
+    categoria: "otros",
+    precio: 3000,
+    animal: "gato",
+    img: "bandejaSanitaria.jpg",
+  },
+  {
+    id: 18,
+    producto: "cucha grande",
+    categoria: "otros",
+    precio: 4500,
+    animal: "ambos",
+    img: "cuchaGrande.jpg",
+  },
+  {
+    id: 19,
+    producto: "cucha pequeña",
+    categoria: "otros",
+    precio: 3500,
+    animal: "ambos",
+    img: "cuchaChica.jpg",
+  },
 ];
+/* Fin array de productos */
 
-const carritoDeCompras = [];
+let container = document.getElementById("productos");
+
+productosPetShop.forEach((prod) => {
+  let productoCard = document.createElement("div");
+  productoCard.className = "tarjetas";
+  productoCard.innerHTML = `
+    <img src="./imagenes/productos/${prod.img}" />
+    <h3>${prod.producto}</h3>
+    <p>$${prod.precio}</p>
+  `;
+  container.appendChild(productoCard);
+});
+
+/* const carritoDeCompras = [];
 
 const opciones = `¿Que desea hacer?\n1. Ver lista de productos\n2. Buscar producto\n3. Filtrar por categoria\n4. Agregar al carrito\n5. Finalizar la compra\n6. Salir`;
 let opcionInicio;
@@ -118,3 +255,4 @@ function opcionCuatro(carritoDeCompras, buscaId) {
   }
   console.log(carritoDeCompras);
 }
+ */
