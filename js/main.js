@@ -1,172 +1,194 @@
 /* Array de productos */
-const productosPetShop = [
-  {
-    id: 1,
-    producto: "bowl acero",
-    categoria: "comederos",
-    precio: 2000,
-    animal: "ambos",
-    img: "bowlAcero.jpg",
-  },
-  {
-    id: 2,
-    producto: "bowl plegable",
-    categoria: "comederos",
-    precio: 1500,
-    animal: "perro",
-    img: "bowlPlegable.jpg",
-  },
-  {
-    id: 3,
-    producto: "bowl agua automatico",
-    categoria: "comederos",
-    precio: 10000,
-    animal: "ambos",
-    img: "bowlAguaAuto.jpg",
-  },
-  {
-    id: 4,
-    producto: "pretal con correa",
-    categoria: "paseo",
-    precio: 4000,
-    animal: "perro",
-    img: "pretalCorrea.jpg",
-  },
-  {
-    id: 5,
-    producto: "collar con correa",
-    categoria: "paseo",
-    precio: 2500,
-    animal: "perro",
-    img: "collarCorrea.jpg",
-  },
-  {
-    id: 6,
-    producto: "pretal con correa",
-    categoria: "paseo",
-    precio: 3500,
-    animal: "gato",
-    img: "pretalGato.jpg",
-  },
-  {
-    id: 7,
-    producto: "collar",
-    categoria: "paseo",
-    precio: 1500,
-    animal: "gato",
-    img: "collarGato.jpg",
-  },
-  {
-    id: 8,
-    producto: "peluche",
-    categoria: "juguetes",
-    precio: 1000,
-    animal: "ambos",
-    img: "juguetePeluche.jpg",
-  },
-  {
-    id: 9,
-    producto: "pelota dura",
-    categoria: "juguetes",
-    precio: 700,
-    animal: "ambos",
-    img: "juguetePelota.jpg",
-  },
-  {
-    id: 10,
-    producto: "hueso duro",
-    categoria: "juguetes",
-    precio: 900,
-    animal: "perro",
-    img: "jugueteHueso.jpg",
-  },
-  {
-    id: 11,
-    producto: "pelota con soga",
-    categoria: "juguetes",
-    precio: 1200,
-    animal: "perro",
-    img: "jugueteSoga.jpg",
-  },
-  {
-    id: 12,
-    producto: "cañita con plumas",
-    categoria: "juguetes",
-    precio: 1000,
-    animal: "gato",
-    img: "jugueteCanita.jpg",
-  },
-  {
-    id: 13,
-    producto: "ratoncitos",
-    categoria: "juguetes",
-    precio: 300,
-    animal: "gato",
-    img: "jugueteRaton.jpg",
-  },
-  {
-    id: 14,
-    producto: "rascador",
-    categoria: "juguetes",
-    precio: 1800,
-    animal: "gato",
-    img: "rascador.jpg",
-  },
-  {
-    id: 15,
-    producto: "tunel con colgantes",
-    categoria: "juguetes",
-    precio: 2500,
-    animal: "gato",
-    img: "jugueteTunel.jpg",
-  },
-  {
-    id: 16,
-    producto: "cubre asientos",
-    categoria: "otros",
-    precio: 8000,
-    animal: "perro",
-    img: "cubreAsientos.jpg",
-  },
-  {
-    id: 17,
-    producto: "bandeja sanitaria y palita",
-    categoria: "otros",
-    precio: 3000,
-    animal: "gato",
-    img: "bandejaSanitaria.jpg",
-  },
-  {
-    id: 18,
-    producto: "cucha grande",
-    categoria: "otros",
-    precio: 4500,
-    animal: "ambos",
-    img: "cuchaGrande.jpg",
-  },
-  {
-    id: 19,
-    producto: "cucha pequeña",
-    categoria: "otros",
-    precio: 3500,
-    animal: "ambos",
-    img: "cuchaChica.jpg",
-  },
-];
+function productosOriginal() {
+  let productosPetShop = [
+    {
+      id: 1,
+      producto: "bowl acero",
+      categoria: "comederos",
+      precio: 2000,
+      animal: "ambos",
+      img: "bowlAcero.jpg",
+    },
+    {
+      id: 2,
+      producto: "bowl plegable",
+      categoria: "comederos",
+      precio: 1500,
+      animal: "perro",
+      img: "bowlPlegable.jpg",
+    },
+    {
+      id: 3,
+      producto: "bowl agua automatico",
+      categoria: "comederos",
+      precio: 10000,
+      animal: "ambos",
+      img: "bowlAguaAuto.jpg",
+    },
+    {
+      id: 4,
+      producto: "pretal con correa",
+      categoria: "paseo",
+      precio: 4000,
+      animal: "perro",
+      img: "pretalCorrea.jpg",
+    },
+    {
+      id: 5,
+      producto: "collar con correa",
+      categoria: "paseo",
+      precio: 2500,
+      animal: "perro",
+      img: "collarCorrea.jpg",
+    },
+    {
+      id: 6,
+      producto: "pretal con correa",
+      categoria: "paseo",
+      precio: 3500,
+      animal: "gato",
+      img: "pretalGato.jpg",
+    },
+    {
+      id: 7,
+      producto: "collar",
+      categoria: "paseo",
+      precio: 1500,
+      animal: "gato",
+      img: "collarGato.jpg",
+    },
+    {
+      id: 8,
+      producto: "peluche",
+      categoria: "juguetes",
+      precio: 1000,
+      animal: "ambos",
+      img: "juguetePeluche.jpg",
+    },
+    {
+      id: 9,
+      producto: "pelota dura",
+      categoria: "juguetes",
+      precio: 700,
+      animal: "ambos",
+      img: "juguetePelota.jpg",
+    },
+    {
+      id: 10,
+      producto: "hueso duro",
+      categoria: "juguetes",
+      precio: 900,
+      animal: "perro",
+      img: "jugueteHueso.jpg",
+    },
+    {
+      id: 11,
+      producto: "pelota con soga",
+      categoria: "juguetes",
+      precio: 1200,
+      animal: "perro",
+      img: "jugueteSoga.jpg",
+    },
+    {
+      id: 12,
+      producto: "cañita con plumas",
+      categoria: "juguetes",
+      precio: 1000,
+      animal: "gato",
+      img: "jugueteCanita.jpg",
+    },
+    {
+      id: 13,
+      producto: "ratoncitos",
+      categoria: "juguetes",
+      precio: 300,
+      animal: "gato",
+      img: "jugueteRaton.jpg",
+    },
+    {
+      id: 14,
+      producto: "rascador",
+      categoria: "juguetes",
+      precio: 1800,
+      animal: "gato",
+      img: "rascador.jpg",
+    },
+    {
+      id: 15,
+      producto: "tunel con colgantes",
+      categoria: "juguetes",
+      precio: 2500,
+      animal: "gato",
+      img: "jugueteTunel.jpg",
+    },
+    {
+      id: 16,
+      producto: "cubre asientos",
+      categoria: "otros",
+      precio: 8000,
+      animal: "perro",
+      img: "cubreAsientos.jpg",
+    },
+    {
+      id: 17,
+      producto: "bandeja sanitaria y palita",
+      categoria: "otros",
+      precio: 3000,
+      animal: "gato",
+      img: "bandejaSanitaria.jpg",
+    },
+    {
+      id: 18,
+      producto: "cucha grande",
+      categoria: "otros",
+      precio: 4500,
+      animal: "ambos",
+      img: "cuchaGrande.jpg",
+    },
+    {
+      id: 19,
+      producto: "cucha pequeña",
+      categoria: "otros",
+      precio: 3500,
+      animal: "ambos",
+      img: "cuchaChica.jpg",
+    },
+  ];
+
+  let buscarInput = document.getElementById("busqueda");
+  let buscarBoton = document.getElementById("botonLupita");
+  /*   buscarBoton.addEventListener("click", buscarProducto);
+   */ buscarBoton.addEventListener("click", () =>
+    buscarProducto(productosPetShop, buscarInput)
+  );
+
+  tarjetasRender(productosPetShop);
+}
+productosOriginal();
 /* Fin array de productos */
 
-let container = document.getElementById("productos");
+function buscarProducto(productos, busqueda) {
+  let textoBusqueda = busqueda.value.toLowerCase();
+  let filtroBuscar = productos.filter((producto) =>
+    producto.producto.includes(textoBusqueda)
+  );
+  tarjetasRender(filtroBuscar);
+}
 
-productosPetShop.forEach((prod) => {
-  let productoCard = document.createElement("div");
-  productoCard.className = "tarjetas";
-  productoCard.innerHTML = `
+function tarjetasRender(productos) {
+  let container = document.getElementById("productos");
+  container.innerHTML = "";
+  productos.forEach((prod) => {
+    let productoCard = document.createElement("div");
+    productoCard.className = "tarjetas";
+    productoCard.innerHTML = `
     <img src="./imagenes/productos/${prod.img}" />
     <h3>${prod.producto}</h3>
     <p>$${prod.precio}</p>
   `;
-  container.appendChild(productoCard);
-});
+    container.appendChild(productoCard);
+  });
+}
 
 /* const carritoDeCompras = [];
 

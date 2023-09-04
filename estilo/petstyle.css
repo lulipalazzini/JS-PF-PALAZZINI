@@ -1,10 +1,11 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background-color: #5c6b73;
+  background-color: #dddddd;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -13,14 +14,51 @@ img {
 }
 
 .top-page {
-  background-color: #4c5b5c;
+  background-color: #ee82c5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#busqueda {
+  width: 30em;
+  height: 2.5em;
+  border: none;
+  padding-left: 1em;
+}
+
+#botonLupita {
+  height: 2.5em;
+  width: 2.5em;
+  border: none;
+  margin-left: -0.3em;
+  background-color: #e4bfd6;
+}
+
+#botonLupita:hover {
+  background-color: yellow;
+}
+
+ul {
+  list-style-type: none;
+  margin-right: 2em;
+}
+
+li {
+  display: inline;
+  padding-left: 2em;
+  font-size: 1.3em;
+}
+
+li:hover {
+  color: yellow;
 }
 
 .bottom-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 0vh;
 }
 
 .logo-ps {
@@ -35,10 +73,15 @@ img {
   align-self: center;
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
+  padding-left: 4em;
 }
 
 .tarjetas {
-  background-color: aqua;
+  /*   background-color: aqua;
+ */
+  border-color: palevioletred;
+  border-style: dotted;
+  border-radius: 3em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,4 +94,5 @@ img {
 .tarjetas > img {
   width: 300px;
   height: 300px;
+  border-radius: 3em;
 }
