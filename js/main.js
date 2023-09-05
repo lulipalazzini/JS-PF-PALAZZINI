@@ -6,7 +6,7 @@ function productosOriginal() {
       producto: "bowl acero",
       categoria: "comederos",
       precio: 2000,
-      animal: "ambos",
+      animal: "perro",
       img: "bowlAcero.jpg",
     },
     {
@@ -22,7 +22,7 @@ function productosOriginal() {
       producto: "bowl agua automatico",
       categoria: "comederos",
       precio: 10000,
-      animal: "ambos",
+      animal: "gato",
       img: "bowlAguaAuto.jpg",
     },
     {
@@ -62,7 +62,7 @@ function productosOriginal() {
       producto: "peluche",
       categoria: "juguetes",
       precio: 1000,
-      animal: "ambos",
+      animal: "perro",
       img: "juguetePeluche.jpg",
     },
     {
@@ -70,7 +70,7 @@ function productosOriginal() {
       producto: "pelota dura",
       categoria: "juguetes",
       precio: 700,
-      animal: "ambos",
+      animal: "gato",
       img: "juguetePelota.jpg",
     },
     {
@@ -142,7 +142,7 @@ function productosOriginal() {
       producto: "cucha grande",
       categoria: "otros",
       precio: 4500,
-      animal: "ambos",
+      animal: "perro",
       img: "cuchaGrande.jpg",
     },
     {
@@ -150,24 +150,32 @@ function productosOriginal() {
       producto: "cucha pequeña",
       categoria: "otros",
       precio: 3500,
-      animal: "ambos",
+      animal: "perro",
       img: "cuchaChica.jpg",
     },
   ];
 
   let buscarInput = document.getElementById("busqueda");
   let buscarBoton = document.getElementById("botonLupita");
-  /*   buscarBoton.addEventListener("click", buscarProducto);
-   */ buscarBoton.addEventListener("click", () =>
-    buscarProducto(productosPetShop, buscarInput)
+  buscarBoton.addEventListener("click", () =>
+    buscarProducto(productosPetShop, buscarInput, carrito)
   );
 
-  tarjetasRender(productosPetShop);
+  let filtroAnimal = document.getElementsByClassName("catDog");
+  for (const filtro of filtroAnimal) {
+    filtro.addEventListener("click", () =>
+      filtrarProducto(productosPetShop, filtro, carrito)
+    );
+  }
+
+  let carrito = [];
+
+  tarjetasRender(productosPetShop, carrito);
 }
 productosOriginal();
 /* Fin array de productos */
 
-function buscarProducto(productos, busqueda) {
+function buscarProducto(productos, busqueda, carrito) {
   let textoBusqueda = busqueda.value.toLowerCase();
   let filtroBuscar = productos.filter((producto) =>
     producto.producto.includes(textoBusqueda)
@@ -175,7 +183,15 @@ function buscarProducto(productos, busqueda) {
   tarjetasRender(filtroBuscar);
 }
 
-function tarjetasRender(productos) {
+function filtrarProducto(productos, fil, carrito) {
+  let botonAnimal = fil.value.toLowerCase();
+  let filtroFiltrar = productos.filter((producto) =>
+    producto.animal.includes(botonAnimal)
+  );
+  tarjetasRender(filtroFiltrar);
+}
+
+function tarjetasRender(productos, carrito) {
   let container = document.getElementById("productos");
   container.innerHTML = "";
   productos.forEach((prod) => {
@@ -185,96 +201,34 @@ function tarjetasRender(productos) {
     <img src="./imagenes/productos/${prod.img}" />
     <h3>${prod.producto}</h3>
     <p>$${prod.precio}</p>
+    <button class=addCarrito id=${prod.id} ><i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
   `;
     container.appendChild(productoCard);
+
+    let agregarCarrito = document.getElementById(prod.id);
+    agregarCarrito.addEventListener("click", (e) =>
+      agregadoAlCarrito(productos, e, carrito)
+    );
   });
 }
 
-/* const carritoDeCompras = [];
-
-const opciones = `¿Que desea hacer?\n1. Ver lista de productos\n2. Buscar producto\n3. Filtrar por categoria\n4. Agregar al carrito\n5. Finalizar la compra\n6. Salir`;
-let opcionInicio;
-
-while (opcionInicio != 6) {
-  opcionInicio = Number(prompt(`Bienvenido a PetShopping\n${opciones}`));
-  if (opcionInicio === 1) {
-    alert(opcionUno(productosPerro));
-  } else if (opcionInicio === 2) {
-    let buscaId = Number(
-      prompt(
-        `Ingrese el ID del producto que busca\n${opcionUno(productosPerro)}`
-      )
-    );
-    opcionDos(buscaId);
-  } else if (opcionInicio === 3) {
-    let busqProducto = prompt(
-      `¿Que categoria esta buscando?\nComederos, paseo o juguetes`
-    ).toLowerCase();
-    opcionTres(busqProducto);
-  } else if (opcionInicio === 4) {
-    let buscaId = Number(
-      prompt(
-        `Ingrese el ID del producto que busca\n${opcionUno(productosPerro)}`
-      )
-    );
-    opcionCuatro(carritoDeCompras, buscaId);
-  } else if (opcionInicio === 5) {
-    let totalDeCompra = carritoDeCompras.reduce(
-      (acumulador, productosPerro) =>
-        acumulador + productosPerro.subtotalCompra,
-      0
-    );
-    alert(`El total de su compra es ${totalDeCompra}`);
-  }
-}
-
-function opcionUno(productosPerro) {
-  let listaProductos = productosPerro
-    .map((producto) => `ID: ${producto.id} - Producto: ${producto.producto}`)
-    .join("\n");
-  return listaProductos;
-}
-
-function opcionDos(buscaId) {
-  let buscaProducto = productosPerro.find(
-    (producto) => producto.id === buscaId
+function agregadoAlCarrito(productos, evento, carrito) {
+  let productoNuevo = productos.find(
+    (prod) => prod.id === Number(evento.target.id)
   );
-  alert(
-    `Producto: ${buscaProducto.producto}\nPrecio: ${buscaProducto.precio}\nCategoria: ${buscaProducto.categoria}`
-  );
-}
-
-function opcionTres(busqProducto) {
-  let prodFiltrado = productosPerro.filter(
-    (producto) => producto.categoria === busqProducto
-  );
-  let listaFiltro = prodFiltrado.map(
-    (producto) =>
-      `ID: ${producto.id} - Producto: ${producto.producto} - Categoria: ${producto.categoria}`
-  );
-  alert(listaFiltro.join("\n"));
-}
-
-function opcionCuatro(carritoDeCompras, buscaId) {
-  let buscaProducto = productosPerro.find(
-    (producto) => producto.id === buscaId
-  );
-  let carritoProducto = carritoDeCompras.find(
-    (producto) => producto.id === buscaId
-  );
-  if (carritoProducto) {
-    carritoProducto.unidades++;
-    carritoProducto.subtotalCompra =
-      carritoProducto.precio * carritoProducto.unidades;
+  let productoEnCarrito = carrito.find((prod) => prod.id === productoNuevo.id);
+  if (productoEnCarrito) {
+    productoEnCarrito.cantidad++;
+    productoEnCarrito.precioTotal =
+      productoEnCarrito.cantidad * productoEnCarrito.precioUnidad;
   } else {
-    carritoDeCompras.push({
-      id: buscaProducto.id,
-      producto: buscaProducto.producto,
-      unidades: 1,
-      precio: buscaProducto.precio,
-      subtotalCompra: buscaProducto.precio,
+    carrito.push({
+      id: productoNuevo.id,
+      producto: productoNuevo.producto,
+      precioUnidad: productoNuevo.precio,
+      cantidad: 1,
+      precioTotal: productoNuevo.precio,
     });
   }
-  console.log(carritoDeCompras);
+  console.log(carrito);
 }
- */

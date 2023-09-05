@@ -76,9 +76,12 @@ li:hover {
   padding-left: 4em;
 }
 
+.addCarrito {
+  background-color: yellow;
+  /* CAMBIAR :) */
+}
+
 .tarjetas {
-  /*   background-color: aqua;
- */
   border-color: palevioletred;
   border-style: dotted;
   border-radius: 3em;
