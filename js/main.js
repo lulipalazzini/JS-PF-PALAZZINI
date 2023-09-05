@@ -176,6 +176,9 @@ function productosOriginal() {
     carrito = JSON.parse(localStorage.getItem("carrito"));
   }
 
+  let finCompra = document.getElementById("botonCompra");
+  finCompra.addEventListener("click", finalizarCompra);
+
   carritoRender(carrito);
   tarjetasRender(productosPetShop, carrito);
 }
@@ -219,9 +222,14 @@ function tarjetasRender(productos, carrito) {
   });
 }
 
+function finalizarCompra() {
+  localStorage.removeItem("carrito");
+  carritoRender();
+}
+
 function visibilidad() {
   document.getElementById("visibilidad").classList.toggle("ocultar");
-  document.getElementById("carritoDeCompras").classList.toggle("ocultar");
+  document.getElementById("carritoBoton").classList.toggle("ocultar");
 }
 
 function agregadoAlCarrito(productos, evento, carrito) {
