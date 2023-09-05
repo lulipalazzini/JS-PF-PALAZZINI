@@ -7,7 +7,7 @@ function productosOriginal() {
       categoria: "comederos",
       precio: 2000,
       animal: "perro",
-      img: "bowlAcero.jpg",
+      img: "bowlAcero.png",
     },
     {
       id: 2,
@@ -55,7 +55,7 @@ function productosOriginal() {
       categoria: "paseo",
       precio: 1500,
       animal: "gato",
-      img: "collarGato.jpg",
+      img: "collarGato.png",
     },
     {
       id: 8,
@@ -71,7 +71,7 @@ function productosOriginal() {
       categoria: "juguetes",
       precio: 700,
       animal: "gato",
-      img: "juguetePelota.jpg",
+      img: "juguetePelota.png",
     },
     {
       id: 10,
@@ -79,7 +79,7 @@ function productosOriginal() {
       categoria: "juguetes",
       precio: 900,
       animal: "perro",
-      img: "jugueteHueso.jpg",
+      img: "jugueteHueso.png",
     },
     {
       id: 11,
@@ -87,7 +87,7 @@ function productosOriginal() {
       categoria: "juguetes",
       precio: 1200,
       animal: "perro",
-      img: "jugueteSoga.jpg",
+      img: "jugueteSoga.png",
     },
     {
       id: 12,
@@ -103,7 +103,7 @@ function productosOriginal() {
       categoria: "juguetes",
       precio: 300,
       animal: "gato",
-      img: "jugueteRaton.jpg",
+      img: "jugueteRaton.png",
     },
     {
       id: 14,
@@ -111,7 +111,7 @@ function productosOriginal() {
       categoria: "juguetes",
       precio: 1800,
       animal: "gato",
-      img: "rascador.jpg",
+      img: "rascador.png",
     },
     {
       id: 15,
@@ -135,7 +135,7 @@ function productosOriginal() {
       categoria: "otros",
       precio: 3000,
       animal: "gato",
-      img: "bandejaSanitaria.jpg",
+      img: "bandejaSanitaria.png",
     },
     {
       id: 18,
@@ -143,7 +143,7 @@ function productosOriginal() {
       categoria: "otros",
       precio: 4500,
       animal: "perro",
-      img: "cuchaGrande.jpg",
+      img: "cuchaGrande.png",
     },
     {
       id: 19,
@@ -151,7 +151,7 @@ function productosOriginal() {
       categoria: "otros",
       precio: 3500,
       animal: "perro",
-      img: "cuchaChica.jpg",
+      img: "cuchaChica.png",
     },
   ];
 
@@ -168,8 +168,15 @@ function productosOriginal() {
     );
   }
 
-  let carrito = [];
+  let visibilidadCarrito = document.getElementById("verCarrito");
+  visibilidadCarrito.addEventListener("click", visibilidad);
 
+  let carrito = [];
+  if (localStorage.getItem("carrito")) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+  }
+
+  carritoRender(carrito);
   tarjetasRender(productosPetShop, carrito);
 }
 productosOriginal();
@@ -192,8 +199,8 @@ function filtrarProducto(productos, fil, carrito) {
 }
 
 function tarjetasRender(productos, carrito) {
-  let container = document.getElementById("productos");
-  container.innerHTML = "";
+  let containerProductos = document.getElementById("productos");
+  containerProductos.innerHTML = "";
   productos.forEach((prod) => {
     let productoCard = document.createElement("div");
     productoCard.className = "tarjetas";
@@ -203,13 +210,18 @@ function tarjetasRender(productos, carrito) {
     <p>$${prod.precio}</p>
     <button class=addCarrito id=${prod.id} ><i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
   `;
-    container.appendChild(productoCard);
+    containerProductos.appendChild(productoCard);
 
     let agregarCarrito = document.getElementById(prod.id);
     agregarCarrito.addEventListener("click", (e) =>
       agregadoAlCarrito(productos, e, carrito)
     );
   });
+}
+
+function visibilidad() {
+  document.getElementById("visibilidad").classList.toggle("ocultar");
+  document.getElementById("carritoDeCompras").classList.toggle("ocultar");
 }
 
 function agregadoAlCarrito(productos, evento, carrito) {
@@ -230,5 +242,24 @@ function agregadoAlCarrito(productos, evento, carrito) {
       precioTotal: productoNuevo.precio,
     });
   }
-  console.log(carrito);
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  carritoRender(carrito);
+}
+
+function carritoRender(productos) {
+  let containerCarrito = document.getElementById("carritoDeCompras");
+  containerCarrito.innerHTML = "";
+  productos.forEach((prod) => {
+    let carritoCard = document.createElement("div");
+    carritoCard.className = "carritoCards";
+    carritoCard.innerHTML = `
+      <p>${prod.producto}</p>
+      <p>$${prod.precioUnidad}</p>
+      <p>${prod.cantidad}</p>
+      <p>$${prod.precioTotal}</p>
+    `;
+    containerCarrito.appendChild(carritoCard);
+  });
 }

@@ -54,6 +54,16 @@ li:hover {
   color: yellow;
 }
 
+.catDog {
+  border: none;
+  background-color: #ee82c5;
+  font-size: 1em;
+}
+
+.catDog:hover {
+  color: yellow;
+}
+
 .bottom-page {
   display: flex;
   justify-content: center;
@@ -77,12 +87,38 @@ li:hover {
 }
 
 .addCarrito {
-  background-color: yellow;
-  /* CAMBIAR :) */
+  background-color: #e4bfd6;
+  border-radius: 0.5em;
+  font-size: 0.9em;
+  padding: 0.3em 1.5em 0.3em 1.5em;
+}
+
+.addCarrito:hover {
+  background-color: #ee82c5;
+}
+
+#carritoDeCompras {
+  flex-direction: column;
+  min-height: 20em;
+  border: solid 3px #ee82c5;
+  border-radius: 2em;
+  margin: 3em;
+  padding: 1em 10em 1em 10em;
+}
+
+#carritoDeCompras div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  padding: 1em;
+}
+
+.ocultar {
+  display: none;
 }
 
 .tarjetas {
-  border-color: palevioletred;
+  border-color: #ee82c5;
   border-style: dotted;
   border-radius: 3em;
   display: flex;
