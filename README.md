@@ -1,5 +1,3 @@
-# PREENTREGA3-PALAZZINI
+# PROYECTOFINAL-PALAZZINI
 
-Para esta preentrega genere html dinamico desde javascript (tarjetas y carrito),
-ademas hice que se pueda filtrar por animal y buscar entre los productos.
-Tambien el carrito dura despues de recargar la pagina con el storage
+Este es mi proyecto con todo lo que aprendimos en el curso. Para esto le agregue librerias (Sweet Alert y Toastify) y Fetch
