@@ -1,159 +1,6 @@
 /* Array de productos */
-function productosOriginal() {
-  let productosPetShop = [
-    {
-      id: 1,
-      producto: "bowl acero",
-      categoria: "comederos",
-      precio: 2000,
-      animal: "perro",
-      img: "bowlAcero.png",
-    },
-    {
-      id: 2,
-      producto: "bowl plegable",
-      categoria: "comederos",
-      precio: 1500,
-      animal: "perro",
-      img: "bowlPlegable.jpg",
-    },
-    {
-      id: 3,
-      producto: "bowl agua automatico",
-      categoria: "comederos",
-      precio: 10000,
-      animal: "gato",
-      img: "bowlAguaAuto.jpg",
-    },
-    {
-      id: 4,
-      producto: "pretal con correa",
-      categoria: "paseo",
-      precio: 4000,
-      animal: "perro",
-      img: "pretalCorrea.jpg",
-    },
-    {
-      id: 5,
-      producto: "collar con correa",
-      categoria: "paseo",
-      precio: 2500,
-      animal: "perro",
-      img: "collarCorrea.jpg",
-    },
-    {
-      id: 6,
-      producto: "pretal con correa",
-      categoria: "paseo",
-      precio: 3500,
-      animal: "gato",
-      img: "pretalGato.jpg",
-    },
-    {
-      id: 7,
-      producto: "collar",
-      categoria: "paseo",
-      precio: 1500,
-      animal: "gato",
-      img: "collarGato.png",
-    },
-    {
-      id: 8,
-      producto: "peluche",
-      categoria: "juguetes",
-      precio: 1000,
-      animal: "perro",
-      img: "juguetePeluche.jpg",
-    },
-    {
-      id: 9,
-      producto: "pelota dura",
-      categoria: "juguetes",
-      precio: 700,
-      animal: "gato",
-      img: "juguetePelota.png",
-    },
-    {
-      id: 10,
-      producto: "hueso duro",
-      categoria: "juguetes",
-      precio: 900,
-      animal: "perro",
-      img: "jugueteHueso.png",
-    },
-    {
-      id: 11,
-      producto: "pelota con soga",
-      categoria: "juguetes",
-      precio: 1200,
-      animal: "perro",
-      img: "jugueteSoga.png",
-    },
-    {
-      id: 12,
-      producto: "cañita con plumas",
-      categoria: "juguetes",
-      precio: 1000,
-      animal: "gato",
-      img: "jugueteCanita.jpg",
-    },
-    {
-      id: 13,
-      producto: "ratoncitos",
-      categoria: "juguetes",
-      precio: 300,
-      animal: "gato",
-      img: "jugueteRaton.png",
-    },
-    {
-      id: 14,
-      producto: "rascador",
-      categoria: "juguetes",
-      precio: 1800,
-      animal: "gato",
-      img: "rascador.png",
-    },
-    {
-      id: 15,
-      producto: "tunel con colgantes",
-      categoria: "juguetes",
-      precio: 2500,
-      animal: "gato",
-      img: "jugueteTunel.jpg",
-    },
-    {
-      id: 16,
-      producto: "cubre asientos",
-      categoria: "otros",
-      precio: 8000,
-      animal: "perro",
-      img: "cubreAsientos.jpg",
-    },
-    {
-      id: 17,
-      producto: "bandeja sanitaria y palita",
-      categoria: "otros",
-      precio: 3000,
-      animal: "gato",
-      img: "bandejaSanitaria.png",
-    },
-    {
-      id: 18,
-      producto: "cucha grande",
-      categoria: "otros",
-      precio: 4500,
-      animal: "perro",
-      img: "cuchaGrande.png",
-    },
-    {
-      id: 19,
-      producto: "cucha pequeña",
-      categoria: "otros",
-      precio: 3500,
-      animal: "perro",
-      img: "cuchaChica.png",
-    },
-  ];
+function productosOriginal(productosJSON) {
+  let productosPetShop = productosJSON;
 
   let buscarInput = document.getElementById("busqueda");
   let buscarBoton = document.getElementById("botonLupita");
@@ -182,7 +29,6 @@ function productosOriginal() {
   carritoRender(carrito);
   tarjetasRender(productosPetShop, carrito);
 }
-productosOriginal();
 /* Fin array de productos */
 
 function buscarProducto(productos, busqueda, carrito) {
@@ -224,6 +70,11 @@ function tarjetasRender(productos, carrito) {
 
 function finalizarCompra() {
   localStorage.removeItem("carrito");
+  alertaFinCompra(
+    "Compra finalizada",
+    "Gracias por confiar en PetShopping",
+    "success"
+  );
   carritoRender();
 }
 
@@ -254,6 +105,8 @@ function agregadoAlCarrito(productos, evento, carrito) {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
   carritoRender(carrito);
+
+  tostadaProducto();
 }
 
 function carritoRender(productos) {
@@ -271,3 +124,38 @@ function carritoRender(productos) {
     containerCarrito.appendChild(carritoCard);
   });
 }
+
+function tostadaProducto() {
+  Toastify({
+    text: "¡Producto agregado exitosamente!",
+    duration: 1500,
+    close: true,
+    gravity: "bottom", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    className: "tostadita",
+  }).showToast();
+}
+
+function alertaFinCompra(title, text, icon) {
+  Swal.fire({
+    title,
+    text,
+    icon,
+    color: "#ee82c5",
+    iconColor: "#ee82c5",
+    confirmButtonText: "Confirmar",
+    confirmButtonColor: "#ee82c5",
+  });
+}
+
+async function infoProductos() {
+  try {
+    const respuesta = await fetch("/productos.json");
+    const productosPS = await respuesta.json();
+    productosOriginal(productosPS);
+  } catch (error) {
+    console.log(error);
+  }
+}
+infoProductos();

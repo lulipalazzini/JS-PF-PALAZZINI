@@ -153,3 +153,8 @@ li:hover {
   height: 300px;
   border-radius: 3em;
 }
+
+.tostadita {
+  background: linear-gradient(to right, #ee82c5, yellow);
+  color: black;
+}
