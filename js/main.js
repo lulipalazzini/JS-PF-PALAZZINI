@@ -75,7 +75,7 @@ function finalizarCompra() {
     "Gracias por confiar en PetShopping",
     "success"
   );
-  carritoRender();
+  carritoRender([]);
 }
 
 function visibilidad() {
@@ -151,7 +151,7 @@ function alertaFinCompra(title, text, icon) {
 
 async function infoProductos() {
   try {
-    const respuesta = await fetch("/productos.json");
+    const respuesta = await fetch("./js/productos.json");
     const productosPS = await respuesta.json();
     productosOriginal(productosPS);
   } catch (error) {
